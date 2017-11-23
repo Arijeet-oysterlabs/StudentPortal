@@ -1,0 +1,13 @@
+{% extends "::base.html.twig" %}
+
+{% block title %} Student Portal {% endblock title %}
+
+{% block stylesheets %}
+    {% stylesheets '@AppBundle/Resources/public/css/*' filter='cssrewrite' %}
+    <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock stylesheets %}
+
+{% block body %}
+    {% block content %} {% endblock content %}
+{% endblock body %}

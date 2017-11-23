@@ -1,0 +1,20 @@
+{% extends "::body.html.twig" %}
+
+{% block title %}Register Page{% endblock title %}
+
+{% block content %}
+
+    <section class="register">
+        <div class="container">
+            <div class="register_block">
+                {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+                {{ form_widget(form) }}
+                <div>
+                    <input type="submit" class="btn btn-danger" value="{{ 'registration.submit'|trans({}, 'FOSUserBundle') }}" />
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </section>
+
+{% endblock content %}

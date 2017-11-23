@@ -1,0 +1,65 @@
+{% extends "::body.html.twig" %}
+
+{% block title %}Login Page{% endblock title %}
+
+{% block content %}
+
+    <section class="login">
+        <div class="login_bg"></div>
+        <div class="container clearfix">
+            <div class="block_login">
+                {% for flashMessage in app.session.flashbag.get('loginFormSuccess') %}
+                    <div class="flash-notice">
+                        {{ flashMessage }}
+                    </div>
+                {% endfor %}
+
+                <form action="{{ path("fos_user_security_check") }}" method="post" accept-charset="utf-8" class="login_form">
+                    {#{% set loginCheckClass = "" %}#}
+                    {#{% if error is not empty %}#}
+                        {#{% if errorLogin is not empty %}#}
+                            {#{% set loginCheckClass = "error" %}#}
+                        {#{% else %}#}
+                            {#{% set loginCheckClass = "success" %}#}
+                        {#{% endif %}#}
+                    {#{% endif %}#}
+
+                    <div class="block_input">
+                        <input
+                                type="text"
+                                id="username"
+                                name="_username"
+                                class="login_name"
+                                placeholder="{{ 'security.login.username'|trans({}, 'FOSUserBundle') }}"
+                                value="{{ last_username }}"
+                                required="required"
+                        >
+                    </div>
+
+                    <div class="block_input">
+                        <input
+                                type="password"
+                                id="password"
+                                name="_password"
+                                class="login_pass"
+                                placeholder="{{ 'security.login.password'|trans({}, 'FOSUserBundle') }}"
+                                required="required"
+                        >
+                    </div>
+
+                    <div class="block_login_remember clearfix">
+                        <input type="checkbox" id="remember_me" name="_remember_me" class="login_remember"/>
+                        <label for="login_remember">{{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }}</label>
+
+                        <a href="{{ path('fos_user_resetting_request') }}">Forgot password?</a>
+                    </div>
+
+                    <button type="submit" class="login_send">log in</button>
+
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
+                </form>
+            </div>
+        </div>
+    </section>
+
+{% endblock content %}

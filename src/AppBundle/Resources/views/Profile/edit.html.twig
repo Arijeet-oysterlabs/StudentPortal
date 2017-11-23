@@ -1,0 +1,18 @@
+{% extends "::body.html.twig" %}
+
+{% block title %}Profile Page{% endblock title %}
+
+{% block content %}
+
+    <section class="Profile">
+        <div class="container">
+            {{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit' } }) }}
+            {{ form_widget(form) }}
+            <div>
+                <input type="submit" value="{{ 'profile.edit.submit'|trans({}, 'FOSUserBundle') }}" />
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </section>
+
+{% endblock content %}
